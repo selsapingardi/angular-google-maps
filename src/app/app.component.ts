@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { GoogleMapsModule } from "@angular/google-maps";
+import { GoogleMapsModule, MapAdvancedMarker, MapInfoWindow } from "@angular/google-maps";
 
 @Component({
   selector: "app-root",
@@ -43,6 +43,7 @@ export class AppComponent {
     { lat: -42.734358, lng: 147.501315 },
     { lat: -42.735258, lng: 147.438 },
   ];
+  @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;
 
   ngOnInit() {
     const parser = new DOMParser();
@@ -59,5 +60,9 @@ export class AppComponent {
       imgTag.src = beachFlagImg;
       location.content = imgTag;
     });
+  }
+
+  onMarkerClick(marker: MapAdvancedMarker) {
+    this.infoWindow.openAdvancedMarkerElement(marker.advancedMarker, marker.advancedMarker.title);
   }
 }
