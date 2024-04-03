@@ -53,11 +53,11 @@ export class AppComponent {
     this.nzLocations.forEach((location) => {
       location.content = parser.parseFromString(svgString, "image/svg+xml").documentElement;
     });
-    const beachFlagImg =
+    const beachFlag =
       "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
     this.auLocations.forEach((location) => {
       let imgTag = document.createElement("img");
-      imgTag.src = beachFlagImg;
+      imgTag.src = beachFlag;
       location.content = imgTag;
     });
   }
